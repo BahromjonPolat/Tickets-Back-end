@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const mongoConnect = () => {
-    const mongoDB = 'mongodb://localhost/';
+    const mongoDB = 'mongodb://localhost/ticket';
     mongoose.connect(mongoDB);
 
     const db = mongoose.connection;
