@@ -22,18 +22,23 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  var data = await User.create(
-    {
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-      imageUrl: req.body.imageUrl,
-      isOnline: req.body.isOnline,
-      firstTime: req.body.firstTime,
-      lastAction: req.body.lastAction
-    }
-  );
-  res.json(data);
+  try {
+    var data = await User.create(
+      {
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        imageUrl: req.body.imageUrl,
+        isOnline: req.body.isOnline,
+        firstTime: req.body.firstTime,
+        lastAction: req.body.lastAction
+      }
+    );
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+    res.json({message: err});
+  }
 });
 
 module.exports = router;

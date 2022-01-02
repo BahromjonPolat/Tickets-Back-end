@@ -18,7 +18,7 @@ router.post('/',async (req, res) => {
           updates : req.body.updates,
       }  
     );
-    res.json(data);
+    res.status(200).json(data);
 });
 
 module.exports = router;
