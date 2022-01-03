@@ -8,6 +8,7 @@ const mongooseHelper = require('./helper/mongo_helper');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const eventRouter = require('./routes/event');
+const ticketRouter = require('./routes/tickets');
 const notFound = require('./routes/404');
 
 const app = express();
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/events', eventRouter);
+app.use('/tickets', ticketRouter);
 app.use('*', notFound);
 
 // catch 404 and forward to error handler
@@ -43,8 +45,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
 
 
 module.exports = app;
