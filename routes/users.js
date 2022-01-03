@@ -36,9 +36,19 @@ router.post('/', async (req, res) => {
     );
     res.status(200).json(data);
   } catch (err) {
-    console.log(err);
-    res.json({message: err});
+    res.status(304).json({ message: "Email is already used" });
   }
+});
+
+router.get('/', async (req, res) => {
+  var data = await User.findOne({ email: req.body.email }, (err, user) => {
+    print(user.body);
+  }).limit(1)
+    .select({ email: 1, password: 1 });
+});
+
+router.put('/', async (req, res) => {
+
 });
 
 module.exports = router;

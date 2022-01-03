@@ -7,7 +7,8 @@ router.get('/', async (req, res) => {
         isAvailable : false
     })
     .populate('user', '-_id -password')
-    .populate('events', '-_id');
+    .populate('events', '-_id')
+    .select({_id : 0});
     res.json(data);
 });
 

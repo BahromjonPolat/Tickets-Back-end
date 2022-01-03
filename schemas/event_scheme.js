@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 
 const eventSchema = mongoose.Schema(
     {
-        title: String,
+        title: { type: String, required: true },
         genre: String,
-        date: { type: Date, default: Date.now },
+        date: Date,
         minPrice: Number,
         maxPrice: Number,
         details: String,
         updates: String,
+        imageUrl: String
     }
 );
 
