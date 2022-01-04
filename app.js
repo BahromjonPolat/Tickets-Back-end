@@ -29,7 +29,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/events', eventRouter);
 app.use('/tickets', ticketRouter);
-app.use('./locations', locationRouter);
+app.use('/locations', locationRouter);
 app.use('*', notFound);
 
 // catch 404 and forward to error handler

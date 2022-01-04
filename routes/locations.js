@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
         }
     );
 
-    res.json(data);
+    res.status(200).json(data);
 });
 
 module.exports = router;

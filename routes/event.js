@@ -3,7 +3,7 @@ const router = express.Router();
 const Event = require('../schemas/event_scheme');
 
 router.get('/',async (req,res) => {
-    var data = await Event.find();
+    var data = await Event.find().populate('location');
     res.json(data);
 });
 
@@ -18,6 +18,8 @@ router.post('/',async (req, res) => {
           date : req.body.date,
           updates : req.body.updates,
           imageUrl : req.body.imageUrl,
+          location : req.body.location,
+          category : req.body.category
       }  
     );
     res.status(200).json(data);

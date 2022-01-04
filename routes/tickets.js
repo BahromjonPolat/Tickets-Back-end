@@ -7,13 +7,19 @@ router.get('/', async (req, res) => {
         isAvailable : false
     })
     .populate('user', '-_id -password')
-    .populate('events', '-_id')
+    .populate({
+        path : 'events', 
+        populate : {
+            path : 'location',
+            model : 'Location'
+        }
+    })
     .select({_id : 0});
     res.json(data);
 });
 
 router.post('/', async (req, res) => {
-    var data = Ticket.create(
+    var data = await Ticket.create(
         {
             user: req.body.userId,
             events: req.body.eventId,
