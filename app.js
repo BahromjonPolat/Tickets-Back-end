@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const eventRouter = require('./routes/event');
 const ticketRouter = require('./routes/tickets');
+const locationRouter = require('./routes/locations');
 const notFound = require('./routes/404');
 
 const app = express();
@@ -28,6 +29,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/events', eventRouter);
 app.use('/tickets', ticketRouter);
+app.use('./locations', locationRouter);
 app.use('*', notFound);
 
 // catch 404 and forward to error handler

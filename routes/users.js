@@ -10,15 +10,15 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const uid = req.params.id;
+  console.log(uid);
   try {
     var data = await User.findOne({ _id: uid }, (err, user) => {
-
+      res.json(user);
     }).select({ password: 0 });
-
-    res.json(data);
   } catch (err) {
     console.log(err);
   }
+
 });
 
 router.post('/', async (req, res) => {
@@ -36,15 +36,30 @@ router.post('/', async (req, res) => {
     );
     res.status(200).json(data);
   } catch (err) {
-    res.status(304).json({ message: "Email is already used" });
+    res.status(400).json({ message: "Email is already used" });
   }
 });
 
-router.get('/', async (req, res) => {
-  var data = await User.findOne({ email: req.body.email }, (err, user) => {
-    print(user.body);
-  }).limit(1)
-    .select({ email: 1, password: 1 });
+router.post('/login', async (req, res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+
+  try {
+
+    var data = await User.findOne({
+      email: email,
+      password: password,
+    });
+
+    if (data) {
+      res.status(200).json(data);
+    } else {
+      res.status(400).json({ message: "Wrong email or password" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+
 });
 
 router.put('/', async (req, res) => {

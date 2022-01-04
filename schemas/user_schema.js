@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema(
         lastAction: Date,
         imageUrl: String,
         isOnline: Boolean,
-
+        
     }
 
 );

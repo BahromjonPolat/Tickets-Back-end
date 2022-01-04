@@ -9,7 +9,17 @@ const eventSchema = mongoose.Schema(
         maxPrice: Number,
         details: String,
         updates: String,
-        imageUrl: String
+        imageUrl: String,
+        category: {
+            type: String,
+            default: 'book',
+            enum: ['book', 'music', 'sport']
+        },
+
+        location : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Location'
+        }
     }
 );
 

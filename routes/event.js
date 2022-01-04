@@ -15,7 +15,9 @@ router.post('/',async (req, res) => {
           minPrice : req.body.minPrice,
           maxPrice : req.body.maxPrice,
           details : req.body.details,
+          date : req.body.date,
           updates : req.body.updates,
+          imageUrl : req.body.imageUrl,
       }  
     );
     res.status(200).json(data);
